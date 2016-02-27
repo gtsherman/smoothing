@@ -16,15 +16,11 @@ public class ScorerTwoStage extends QueryDocScorer {
 
 	private ScorerDirichlet dirichlet;
 	private QueryDocScorer noise;
-	
-	public ScorerTwoStage(ScorerDirichlet dirichlet, QueryDocScorer noise, double mixingParam) {
-		setDirichletScorer(dirichlet);
-		setNoiseScorer(noise);
-		setMixingParameter(mixingParam);
-	}
 
 	public ScorerTwoStage(ScorerDirichlet dirichlet, QueryDocScorer noise) {
-		this(dirichlet, noise, defaultMixingParam);
+		setDirichletScorer(dirichlet);
+		setNoiseScorer(noise);
+		setParameter(MIXING_PARAM, defaultMixingParam);
 	}
 	
 	public ScorerDirichlet getDirichletScorer() {
@@ -43,17 +39,7 @@ public class ScorerTwoStage extends QueryDocScorer {
 		this.noise = noise;
 	}
 	
-	public void setMixingParameter(double mixingParam) {
-		setParameter(MIXING_PARAM, mixingParam);
-		logger.info("Set mixing parameter to "+mixingParam);
-	}
-
 	public double score(SearchHit doc) {
-		if (dirichlet == null) {
-			logger.error("Dirichlet scorer not set. Returning score of 0.");
-			return 0.0;
-		}
-			
 		double logLikelihood = 0.0;
 		Iterator<String> termIterator = gQuery.getFeatureVector().iterator();
 		while (termIterator.hasNext()) {
