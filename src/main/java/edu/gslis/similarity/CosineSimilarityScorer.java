@@ -4,14 +4,9 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import edu.gslis.textrepresentation.FeatureVector;
 
 public class CosineSimilarityScorer {
-	
-	private static Logger logger = LoggerFactory.getLogger(CosineSimilarityScorer.class);
 	
 	private FeatureVector doc;
 	private FeatureVector otherdoc;
@@ -42,7 +37,7 @@ public class CosineSimilarityScorer {
 		Set<String> vocab = new HashSet<String>();
 		vocab.addAll(doc.getFeatures());
 		vocab.addAll(otherdoc.getFeatures());
-		logger.debug("Doc length 1: "+doc.getFeatures().size()+", Doc length 2:" +otherdoc.getFeatures().size()+", Total: "+vocab.size());
+		System.err.println("Doc length 1: "+doc.getFeatures().size()+", Doc length 2:" +otherdoc.getFeatures().size()+", Total: "+vocab.size());
 		
 		Iterator<String> termIt = vocab.iterator();
 		String term;

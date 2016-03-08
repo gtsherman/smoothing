@@ -2,14 +2,9 @@ package edu.gslis.docscoring;
 
 import java.util.Iterator;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import edu.gslis.searchhits.SearchHit;
 
 public class ScorerTwoStage extends QueryDocScorer {
-	
-	final static Logger logger = LoggerFactory.getLogger(ScorerTwoStage.class);
 	
 	public static final String MIXING_PARAM = "lambda";
 	private static double defaultMixingParam = 0.5;

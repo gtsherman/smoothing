@@ -6,9 +6,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * Provides access to a configuration file with lines of the form <code>parameter: value</code>
  * 
@@ -17,8 +14,6 @@ import org.slf4j.LoggerFactory;
  */
 public class SimpleConfiguration implements Configuration {
 	
-	final static Logger logger = LoggerFactory.getLogger(SimpleConfiguration.class);
-
 	private Map<String, String> config;
 	
 	public SimpleConfiguration() {
@@ -37,7 +32,7 @@ public class SimpleConfiguration implements Configuration {
 			}
 			scanner.close();
 		} catch (FileNotFoundException e) {
-			logger.error("Configuration file not found.");
+			System.err.println("Configuration file not found.");
 			System.exit(-1);
 		}
 	}
